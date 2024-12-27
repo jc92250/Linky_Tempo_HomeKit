@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Linky_Tempo_HomeKit_Library")(type "KiCad")(uri "${KIPRJMOD}/Linky_Tempo_HomeKit_Library.kicad_sym")(options "")(descr ""))
+)
