@@ -1,18 +1,22 @@
 //
 // ----------------------------------------------------------------
 // Issues:
+//
 // TODO: passer sur la v2 de homeSpan
 // TODO: vérifier qu'on peut uploader un nouveau sketch en étant connecté à la TIC
-// TODO: led qui confirme le fonctionnement normal ?
+// TODO: led qui confirme le fonctionnement normal (homespan + bme280) ?
 // TODO: fonctionnement en cas de 'plantage' de la partie HomeKit ?
-// TODO: activer le hotspot wifi immédiatement (si appui 3s sur setup)
+// TODO: juste après l'upload du sketch, passer en chauffage ne se reset pas bien
+// TODO: passer en 'Chauffer': affiche chauffage mais la température reste à 10°C
+//
+// DONE: activer le hotspot wifi immédiatement après un reset
 // DONE: la tempo de délestage ne doit s'appliquer qu'à la surconsommation
 // DONE: en délestage interdit, la température reste parfois à 21°C
 // DONE: en délestage interdit, on reste parfois en mode chauffage
 // ----------------------------------------------------------------
 //
 #include "constants.h"
-#include "wifi_JC.h"
+//#include "wifi_JC.h"
 
 // ----------------------------------------------------------------
 // Téléinformation Linky
@@ -96,11 +100,12 @@ void setup() {
   homeSpan.setControlPin(PIN_SETUP); // bouton
   //homeSpan.setLogLevel(2);
   // Le WiFi interne utilisé lors de la configuration du device
+  homeSpan.enableAutoStartAP(); // le mode point d'accès wifi sera actif automatiquement après un reset
   homeSpan.setApSSID(APSSID);
   homeSpan.setApPassword(APPASSWORD);
   // TEMPORAIRE:
-  homeSpan.setWifiCredentials(WIFI_SSID, WIFI_PASSWORD);
-  homeSpan.setPairingCode(PAIRING_CODE);
+  //homeSpan.setWifiCredentials(WIFI_SSID, WIFI_PASSWORD);
+  //homeSpan.setPairingCode(PAIRING_CODE);
   //homeSpan.setLogLevel(1);
   // Définition de l'accessoire
   homeSpan.begin(Category::Thermostats, DISPLAY_NAME, HOST_NAME_BASE, MODEL_NAME);

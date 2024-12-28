@@ -33,18 +33,20 @@ Note: "Heater-Cooler" aurait peut-être pu être utilisé à la place de "Thermo
 ## Configuration
 
 Factory reset:  
-Faire un appui long (> 10 secondes) sur le bouton reset. Au bout de 3 secondes, la led interne va clignoter rapidement, continuer l'appui sur le bouton jusqu'à l'extinction de la led
+Faire un appui long (> 10 secondes) sur le bouton reset. Au bout de 3 secondes, la led interne va clignoter rapidement, continuer l'appui sur le bouton jusqu'à l'extinction de la led.
 
-Pour configurer le device, faire comme suit:
-- Alimenter le device  
-- Faire un appui long sur le bouton reset pour entrer dans le mode configuration
-- relacher lorsque la led interne clignote rapidement
-- Faire deux appuis courts sur le bouton pour sélectionner l'option de paramétrage du WiFi
-- Faire un appui semi-long (3 secondes) pour entrer dans ce mode
-- Depuis un ordinateur ou un smartphone, se connecter au Wifi du device (nom du réseau: JCDELESTAGE, mot de passe: 123456789)
-- dans la page web qui s'affiche, entrer les paramètres de votre Wifi puis entrer un code HomeKit
+A ce moment, le device est configuré comme un point d'accès wifi sur lequel on peut
+se connecter avec un ordinateur ou un smartphone. Voici les paramètres du point d'accès:
+- nom du wifi: JCDELESTAGE
+- mot de passe: 123456789
 
-Ceci fait, il est maintenant possible d'associer le device à Maison
+Via ce point d'accès, il est possible de:
+- définit le réseau wifi sur lequel le device doit se connecter
+- définir le setup-code homeKit du device
+
+Une fois ces informations saisies, le device va redémarrer et ce connecteur à ce
+réseau wifi. Une fois ceci effectué, la led bleue va flasher 2 fois toutes les 3 secondes
+pour indiquer qu'il n'est pas pairé dans Maison.
 
 ## Les LEDs
 
@@ -52,5 +54,3 @@ LED rouge: toujours allumée, indique que l'ESP32 est alimenté
 LED bleue:  
 - allumée fixe: le device est en fonctionnement et pairé dans Maison  
 - allumée et clignotante (2 flashs brefs toutes les 3 secondes): le device n'est pas pairé dans Maison
-
-
