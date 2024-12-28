@@ -58,17 +58,17 @@ struct DEV_Thermostat: Service::Thermostat {
       }
     }
 
-    // on applique les changements qu'on peut
-    // en l'occurence, uniquement 'current'
-    // on ne peut pas modifier 'target' et 'tTemp' immédiatement
-    // TODO: faut-il checker les valeurs avant d'appliquer ?
+    // on ne peut pas modifier les valeurs dans la méthode update()
+    // on va donc les mémoriser et ils seront appliqués dans la loop()
     if (bNewModeKnown) {
       if (bNewModeAuto) {
+        LOG1("update->passer en AUTO\n");
         newCurrentMode = Characteristic::CurrentHeatingCoolingState::IDLE;
         newTargetMode = Characteristic::TargetHeatingCoolingState::AUTO;
         newTargetTemp = 10.0;
         bNeedToUpdateTarget = true;
       } else {
+        LOG1("update->passer en HEAT\n");
         newCurrentMode = Characteristic::CurrentHeatingCoolingState::HEATING;
         newTargetMode = Characteristic::TargetHeatingCoolingState::HEAT;
         newTargetTemp = 21.0;
@@ -78,11 +78,11 @@ struct DEV_Thermostat: Service::Thermostat {
     return true;
   }
 
-  // Il est interdit de modifier 'target' et 'tTemp' dans update car cela cause ce message:
+  // Il est interdit de modifier des caractéristiques dans update car cela cause ce message:
   // *** WARNING:  Attempt to set value of Characteristic::TargetTemperature within update() while it is being simultaneously updated by Home App.  This may cause device to become non-responsive!
-  // On se propose donc de "recadrer" sa valeur dans la loop:
+  // On se propose donc de "recadrer" ces valeurs dans la loop:
   // Cela corresponds au cas où l'utilisateur a modifié la température target via le slider
-  // Comme l'objectif est de définit si on est en mode 'chauffage' ou 'auto', on ne gère que deux températures target:
+  // Comme l'objectif est de définir si on est en mode 'chauffage' ou 'auto', on ne gère que deux températures target:
   // 21°C pour le mode 'chauffage' et 10°C pour le mode 'auto'
   uint32_t lastBMEread; // quand le BME280 a été lu la dernière fois
   void loop() override {
@@ -97,6 +97,12 @@ struct DEV_Thermostat: Service::Thermostat {
     }
     // Propagation des infos de délestage ou non
     if (bNeedToUpdateTarget) {
+      LOG1("loop->changer de mode vers:\n");
+      if (newTargetMode == Characteristic::TargetHeatingCoolingState::AUTO) LOG1("targetMode=AUTO\n");
+      else if (newTargetMode == Characteristic::TargetHeatingCoolingState::HEAT) LOG1("targetMode=HEAT\n");
+      LOG1("targetTemp=%f\n", newTargetTemp);
+      if (newCurrentMode == Characteristic::CurrentHeatingCoolingState::HEATING) LOG1("currentMode=HEATING\n");
+      else if (newCurrentMode == Characteristic::CurrentHeatingCoolingState::IDLE) LOG1("currentMode=IDLE\n");
       target->setVal(newTargetMode);
       tTemp->setVal(newTargetTemp);
       current->setVal(newCurrentMode);
@@ -110,11 +116,13 @@ struct DEV_Thermostat: Service::Thermostat {
     // On bascule entre le mode HEATING et IDLE
     int c = current->getVal();
     if (c == Characteristic::CurrentHeatingCoolingState::HEATING) {
+      LOG1("button->passer en mode AUTO\n");
       newCurrentMode = Characteristic::CurrentHeatingCoolingState::IDLE;
       newTargetMode = Characteristic::TargetHeatingCoolingState::AUTO;
       newTargetTemp = 10.0;
       bNeedToUpdateTarget = true;
     }else if (c == Characteristic::CurrentHeatingCoolingState::IDLE) {
+      LOG1("button->passer en mode HEAT\n");
       newCurrentMode = Characteristic::CurrentHeatingCoolingState::HEATING;
       newTargetMode = Characteristic::TargetHeatingCoolingState::HEAT;
       newTargetTemp = 21.0;
@@ -123,13 +131,25 @@ struct DEV_Thermostat: Service::Thermostat {
   }
 
   boolean heatEnforced() {
-    return current->getVal() == Characteristic::CurrentHeatingCoolingState::HEATING;
+    if (bNeedToUpdateTarget) {
+      if (newTargetMode == Characteristic::TargetHeatingCoolingState::HEAT) return true; else return false;
+    } else {
+      boolean val = current->getVal() == Characteristic::CurrentHeatingCoolingState::HEATING;
+      //if (val) LOG1("heatEnforced? YES\n"); else LOG1("heatEnforced? NO\n");
+      return val;
+    }
   }
 
   void enforceAuto() {
-    if (current->getVal() != Characteristic::CurrentHeatingCoolingState::IDLE ||
+    if (bNeedToUpdateTarget) {
+      LOG1("enforce AUTO (in var)\n");
+      newCurrentMode = Characteristic::CurrentHeatingCoolingState::IDLE;
+      newTargetMode = Characteristic::TargetHeatingCoolingState::AUTO;
+      newTargetTemp = 10.0;
+    } else if (current->getVal() != Characteristic::CurrentHeatingCoolingState::IDLE ||
         target->getVal() != Characteristic::TargetHeatingCoolingState::AUTO ||
         tTemp->getVal() < 9.9 || tTemp->getVal() > 10.1) {
+      LOG1("enforce AUTO (in characteristics)\n");
       newCurrentMode = Characteristic::CurrentHeatingCoolingState::IDLE;
       newTargetMode = Characteristic::TargetHeatingCoolingState::AUTO;
       newTargetTemp = 10.0;

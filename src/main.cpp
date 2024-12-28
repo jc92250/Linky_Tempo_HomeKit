@@ -1,11 +1,14 @@
 //
 // ----------------------------------------------------------------
 // Issues:
-// TODO: en délestage interdit, la temp reste parfois à 21°C
+// TODO: passer sur la v2 de homeSpan
 // TODO: vérifier qu'on peut uploader un nouveau sketch en étant connecté à la TIC
 // TODO: led qui confirme le fonctionnement normal ?
 // TODO: fonctionnement en cas de 'plantage' de la partie HomeKit ?
+// TODO: activer le hotspot wifi immédiatement (si appui 3s sur setup)
 // DONE: la tempo de délestage ne doit s'appliquer qu'à la surconsommation
+// DONE: en délestage interdit, la température reste parfois à 21°C
+// DONE: en délestage interdit, on reste parfois en mode chauffage
 // ----------------------------------------------------------------
 //
 #include "constants.h"
@@ -98,7 +101,7 @@ void setup() {
   // TEMPORAIRE:
   homeSpan.setWifiCredentials(WIFI_SSID, WIFI_PASSWORD);
   homeSpan.setPairingCode(PAIRING_CODE);
-  //homeSpan.setLogLevel(2);
+  //homeSpan.setLogLevel(1);
   // Définition de l'accessoire
   homeSpan.begin(Category::Thermostats, DISPLAY_NAME, HOST_NAME_BASE, MODEL_NAME);
 
@@ -134,24 +137,21 @@ void loop() {
     //digitalWrite(LED_ANNUL, LOW);
   }
 
-  // on indique (via la LED dédiée) si on déleste ou pas en HPJW
-  // TODO: digitalWrite(LED_ANNUL, annulDelestageHPJW ? HIGH : LOW);
-
   // on indique au fil pilote si on déleste ou pas
   if (delestage_CONSO) {
-    // On doit délester
+    // On doit délester pour cause de surconsommation
     // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
     digitalWrite(PIN_PILOTE, HIGH);
     // En on repousse la fin du délestage
     startDelestage = currentTime;
 
   } else if (delestage_HPJR) {
-    // On doit délester
+    // On doit délester pour cause de jour rouge
     // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
     digitalWrite(PIN_PILOTE, HIGH);
 
   } else if (delestage_HPJW && !annulDelestageHPJW) {
-    // On doit délester
+    // On doit délester pour cause de jour blanc
     // Comme on ne sait pas si on était déjà en mode délestage, on définit les pins de sortie en conséquence
     digitalWrite(PIN_PILOTE, HIGH);
 

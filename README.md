@@ -51,6 +51,6 @@ Ceci fait, il est maintenant possible d'associer le device à Maison
 LED rouge: toujours allumée, indique que l'ESP32 est alimenté  
 LED bleue:  
 - allumée fixe: le device est en fonctionnement et pairé dans Maison  
-- allumée et clignotante (2 coups brefs toutes les 3 secondes): le device n'est pas pairé dans Maison
+- allumée et clignotante (2 flashs brefs toutes les 3 secondes): le device n'est pas pairé dans Maison
 
 

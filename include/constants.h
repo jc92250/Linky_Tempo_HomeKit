@@ -11,8 +11,8 @@
 
 // HomeSpan display name
 #define DISPLAY_NAME "Chauffage-Délestage"
-#define HOST_NAME_BASE "HomeSpanT"
-#define MODEL_NAME "HomeSpanT-ESP32"
+#define HOST_NAME_BASE "HomeSpan"
+#define MODEL_NAME "HomeSpan-ESP32"
 
 // A quelle fréquence doit-on lire les valeurs de température
 // et humidité du BME280 ?

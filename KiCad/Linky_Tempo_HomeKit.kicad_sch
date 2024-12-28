@@ -3260,7 +3260,7 @@
 				)
 			)
 		)
-		(symbol "Transistor_FET:BS170"
+		(symbol "Transistor_FET:2N7000"
 			(pin_names hide)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3274,7 +3274,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "BS170"
+			(property "Value" "2N7000"
 				(at 5.08 0 0)
 				(effects
 					(font
@@ -3294,7 +3294,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BS170-D.PDF"
+			(property "Datasheet" "https://www.vishay.com/docs/70226/70226.pdf"
 				(at 5.08 -3.81 0)
 				(effects
 					(font
@@ -3304,7 +3304,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "0.5A Id, 60V Vds, N-Channel MOSFET, TO-92"
+			(property "Description" "0.2A Id, 200V Vds, N-Channel MOSFET, 2.6V Logic Level, TO-92"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3313,7 +3313,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "N-Channel MOSFET"
+			(property "ki_keywords" "N-Channel MOSFET Logic-Level"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3331,7 +3331,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "BS170_0_1"
+			(symbol "2N7000_0_1"
 				(polyline
 					(pts
 						(xy 0.254 0) (xy -2.54 0)
@@ -3498,11 +3498,11 @@
 					)
 				)
 			)
-			(symbol "BS170_1_1"
+			(symbol "2N7000_1_1"
 				(pin passive line
-					(at 2.54 5.08 270)
+					(at 2.54 -5.08 90)
 					(length 2.54)
-					(name "D"
+					(name "S"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3536,9 +3536,9 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 -5.08 90)
+					(at 2.54 5.08 270)
 					(length 2.54)
-					(name "S"
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3782,7 +3782,7 @@
 		(at 74.93 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "3dede42a-679b-4304-b96a-d74584905f60")
+		(uuid "29456a6c-4fbf-4d9e-a3a0-462bc5ee92df")
 	)
 	(junction
 		(at 238.76 121.92)
@@ -3791,16 +3791,16 @@
 		(uuid "3f8a6ecd-4a00-4dcb-bc5c-827686c25691")
 	)
 	(junction
+		(at 63.5 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "562bede5-7d96-4b9e-85d8-1d18e65c977c")
+	)
+	(junction
 		(at 74.93 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "81f3384c-139c-4f01-8314-d9fa13ce1ac6")
-	)
-	(junction
-		(at 63.5 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f5b4699a-a8b9-4039-bc97-05b7a57f2997")
 	)
 	(junction
 		(at 95.25 55.88)
@@ -4056,16 +4056,6 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 78.74) (xy 63.5 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2fe3fd09-955d-4aaf-afac-0a9edc38c243")
-	)
-	(wire
-		(pts
 			(xy 165.1 58.42) (xy 165.1 74.93)
 		)
 		(stroke
@@ -4073,6 +4063,16 @@
 			(type default)
 		)
 		(uuid "37c68b1d-e428-4b48-b0e8-5783a100d4dc")
+	)
+	(wire
+		(pts
+			(xy 74.93 83.82) (xy 74.93 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b99ee8a-330e-4796-b983-e4b865b6653f")
 	)
 	(wire
 		(pts
@@ -4103,16 +4103,6 @@
 			(type default)
 		)
 		(uuid "4c23fd00-362f-4d61-b297-f90549da9d22")
-	)
-	(wire
-		(pts
-			(xy 63.5 78.74) (xy 67.31 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50cd975a-2955-4b72-9d72-d572021a54b5")
 	)
 	(wire
 		(pts
@@ -4176,6 +4166,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 78.74) (xy 63.5 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "755dacac-5748-4872-810b-499cb436c635")
+	)
+	(wire
+		(pts
 			(xy 205.74 113.03) (xy 205.74 116.84)
 		)
 		(stroke
@@ -4226,16 +4226,6 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 83.82) (xy 74.93 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a30e87c3-64d5-4f7f-ab0f-572003105f8f")
-	)
-	(wire
-		(pts
 			(xy 95.25 60.96) (xy 95.25 58.42)
 		)
 		(stroke
@@ -4253,16 +4243,6 @@
 			(type default)
 		)
 		(uuid "a5130788-212c-4e25-8192-821f50e12f53")
-	)
-	(wire
-		(pts
-			(xy 74.93 68.58) (xy 74.93 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a6fa1e6e-7ef6-432b-bec4-3bd9e2e98341")
 	)
 	(wire
 		(pts
@@ -4386,6 +4366,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 78.74) (xy 67.31 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d833b374-50cb-43ac-ba53-c6e75a814c2a")
+	)
+	(wire
+		(pts
 			(xy 85.09 129.54) (xy 85.09 139.7)
 		)
 		(stroke
@@ -4473,6 +4463,16 @@
 			(type default)
 		)
 		(uuid "fab491ee-8e53-42b8-aa72-75096594e477")
+	)
+	(wire
+		(pts
+			(xy 74.93 68.58) (xy 74.93 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fba59c12-15ae-4c0c-a2a8-3d6b2461ab37")
 	)
 	(wire
 		(pts
@@ -4613,6 +4613,50 @@
 			)
 		)
 		(uuid "8a096184-7cba-4aa7-9246-876c6e5cd90c")
+	)
+	(label "FP"
+		(at 250.19 133.35 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "10d0e94d-008f-4dd6-ad2d-1c7861762672")
+	)
+	(label "220V"
+		(at 250.19 118.11 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5a7af6f7-908e-4db7-a4ca-89416bd4fd27")
+	)
+	(label "FP"
+		(at 250.19 123.19 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ce682e97-b373-45e0-b2c1-7a6d48fc3386")
+	)
+	(label "FP"
+		(at 250.19 128.27 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d888f534-6d05-4950-b376-d19c290e265f")
 	)
 	(global_label "SDA"
 		(shape input)
@@ -4812,81 +4856,6 @@
 			(project ""
 				(path "/9588d092-783d-4d3f-a96b-fb17d909e9c7"
 					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_FET:BS170")
-		(at 72.39 78.74 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "0b3d5227-2748-45c3-a517-6181f13d06d9")
-		(property "Reference" "Q1"
-			(at 78.74 77.4699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BS170"
-			(at 78.74 80.0099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline_Wide"
-			(at 77.47 80.645 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BS170-D.PDF"
-			(at 77.47 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.5A Id, 60V Vds, N-Channel MOSFET, TO-92"
-			(at 72.39 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6976edb8-1f6c-470a-9d29-3718cef7a7a6")
-		)
-		(pin "3"
-			(uuid "4f9c2cff-ffe3-466f-80eb-ea4626b2e0e8")
-		)
-		(pin "2"
-			(uuid "3c565fe0-4bdb-4016-9263-6444f5821045")
-		)
-		(instances
-			(project ""
-				(path "/9588d092-783d-4d3f-a96b-fb17d909e9c7"
-					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -5391,6 +5360,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Transistor_FET:2N7000")
+		(at 72.39 78.74 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4b3fa122-a8ca-458c-a0a0-6ebe16812f9f")
+		(property "Reference" "Q3"
+			(at 78.74 77.4699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2N7000"
+			(at 78.74 80.0099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+			(at 77.47 80.645 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/70226/70226.pdf"
+			(at 77.47 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.2A Id, 200V Vds, N-Channel MOSFET, 2.6V Logic Level, TO-92"
+			(at 72.39 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cc2e153e-a6b0-4b02-9645-d09e8138ae12")
+		)
+		(pin "2"
+			(uuid "d8db5e23-14fa-4914-bde0-7758edf4c0fd")
+		)
+		(pin "3"
+			(uuid "9d5faed9-1085-4081-8207-cdfd25549f95")
+		)
+		(instances
+			(project ""
+				(path "/9588d092-783d-4d3f-a96b-fb17d909e9c7"
+					(reference "Q3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 205.74 102.87 0)
 		(unit 1)
@@ -5750,7 +5795,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 65.278 86.36 90)
 			(effects
 				(font
@@ -6769,10 +6814,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "d364838d-6700-4d48-a23d-8b02bfd1ca54")
 		(property "Reference" "J3"
-			(at 250.19 123.1899 0)
+			(at 246.634 113.792 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6781,12 +6825,13 @@
 			)
 		)
 		(property "Value" "Main(1) + Fil pilote (3,5,7)"
-			(at 250.19 125.7299 0)
+			(at 254.508 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical"
